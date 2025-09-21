@@ -16,7 +16,6 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,7 +26,7 @@ export default function SignUpPage() {
       // For now, we'll just redirect to OAuth since we're not implementing email/password registration
       // In a real app, you'd create the user account here
       setError('Please use Google or GitHub to sign up')
-    } catch (error) {
+    } catch {
       setError('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)
@@ -38,7 +37,7 @@ export default function SignUpPage() {
     setIsLoading(true)
     try {
       await signIn(provider, { callbackUrl: '/dashboard' })
-    } catch (error) {
+    } catch {
       setError('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)

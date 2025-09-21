@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { youtubeAPI } from '@/lib/youtube'
-import { CreateTranscriptRequest, CreateTranscriptResponse } from '@/types'
+import { CreateTranscriptResponse } from '@/types'
 import { z } from 'zod'
 
 const createTranscriptSchema = z.object({
   url: z.string().url('Invalid URL format'),
 })
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await auth()
     
