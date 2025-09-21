@@ -54,7 +54,7 @@ const authOptions: NextAuthConfig = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const dbUser = user as any
+        const dbUser = user as { subscriptionTier?: string; trialEndsAt?: Date }
         token.subscriptionTier = dbUser.subscriptionTier
         token.trialEndsAt = dbUser.trialEndsAt
       }
