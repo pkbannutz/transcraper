@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
               stripeCustomerId: session.customer as string,
               stripeSubscriptionId: subscription.id,
               status: subscription.status,
-              currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
+              currentPeriodEnd: new Date((subscription as unknown as { current_period_end: number }).current_period_end * 1000),
             },
           })
 
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
           },
           data: {
             status: subscription.status,
-            currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
+            currentPeriodEnd: new Date((subscription as unknown as { current_period_end: number }).current_period_end * 1000),
           },
         })
 
