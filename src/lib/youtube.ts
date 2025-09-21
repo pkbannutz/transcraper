@@ -46,7 +46,7 @@ export class YouTubeAPI {
     }
   }
 
-  async getTranscript(videoId: string, _language: string = 'en'): Promise<TranscriptSegment[]> {
+  async getTranscript(videoId: string): Promise<TranscriptSegment[]> {
     // For now, we'll return a mock transcript
     // In a real implementation, you would use the YouTube Transcript API
     // or a service like youtube-transcript-api
