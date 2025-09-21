@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         if (session.mode === 'subscription') {
           const subscription = await stripe.subscriptions.retrieve(
             session.subscription as string
-          )
+          ) as Stripe.Subscription
 
           // Find user by email
           const user = await prisma.user.findUnique({
