@@ -62,7 +62,7 @@ const authOptions: NextAuthConfig = {
     },
     async session({ session, token }) {
       if (token) {
-        const sessionUser = session.user as any
+        const sessionUser = session.user as { id?: string; subscriptionTier?: string; trialEndsAt?: Date }
         sessionUser.id = token.sub as string
         sessionUser.subscriptionTier = token.subscriptionTier as string
         sessionUser.trialEndsAt = token.trialEndsAt as Date
