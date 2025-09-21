@@ -3,9 +3,9 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { stripe, createCheckoutSession, createCustomer } from '@/lib/stripe'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const session = await auth()
+    const session = await auth(request)
     
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -43,7 +43,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth()
+    const session = await auth(request)
     
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
